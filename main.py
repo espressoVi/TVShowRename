@@ -2,6 +2,9 @@ import os
 import sys
 import re
 import shutil
+import tkinter as tk
+from tkinter import filedialog
+
 
 class Rename:
     """ 
@@ -66,6 +69,10 @@ class Rename:
         return res
 
     def _rename_season(self, number, path):
+        """ 
+        Renames one season of files, and attempts to detect duplicates
+        or files which are outside their original season.
+        """
         files = [f for f in os.listdir(path)\
                 if os.path.splitext(f)[1][1:] in self.supported_extensions]
         if not files:
@@ -91,7 +98,10 @@ class Rename:
             shutil.move(old_path, value)
 
 def main():
-    Rename("./Reservation Dogs")
+    root = tk.Tk()
+    root.withdraw()
+    file_path = filedialog.askdirectory(initialdir = "~/")
+    Rename(file_path)
 
 if __name__ == "__main__":
     main()
