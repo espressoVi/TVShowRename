@@ -100,7 +100,7 @@ class Rename:
 def main():
     root = tk.Tk()
     root.withdraw()
-    file_path = filedialog.askdirectory(initialdir = "~/")
+    file_path = filedialog.askdirectory(initialdir = "~/Torrents/")
     Rename(file_path)
 
 if __name__ == "__main__":
